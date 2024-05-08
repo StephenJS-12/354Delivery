@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of cartItems; let i = index">
+      <ion-thumbnail slot="start">
+        <img [src]="item.image">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.name }}</h2>
+        <p>Price: R{{ item.price }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Subtotal: R{{ item.price * (item.quantity || 1) }}</p> 
+      </ion-label>
+      <ion-button fill="outline" color="danger" slot="end" (click)="removeItem(i)">
+        Remove
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-label position="stacked">Any instructions?</ion-label>
+    <ion-textarea placeholder="Example instruction..."></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Item Total</ion-label>
+    <ion-label float-right>R{{ itemTotal() }}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Delivery Fee</ion-label>
+    <ion-label float-right>R50</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>To Pay</ion-label>
+    <ion-label float-right>R{{ totalPay() }}</ion-label>
+  </ion-item>
+
+  <ion-button expand="full" (click)="makePayment()">Make Payment</ion-button>
+
+  <ion-item lines="none">
+    <ion-label>
+      Deliver to Office
+      <p>University of Pretoria, Informatics</p>
+    </ion-label>
+    <ion-button fill="outline" slot="end">Change</ion-button>
+  </ion-item>
+</ion-content>

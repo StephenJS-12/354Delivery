@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Search restaurants..." [(ngModel)]="searchQuery" (ionChange)="onSearchChange()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let restaurant of filteredRestaurants" (click)="addToCart(restaurant)">
+      <ion-thumbnail slot="start">
+          <img [src]="restaurant.image">
+      </ion-thumbnail>
+      <ion-label>
+          <h2>{{ restaurant.name }}</h2>
+          <p>{{ restaurant.dish }}</p>
+          <p>{{ restaurant.type }} - {{ restaurant.rating }} stars</p>
+          <p>{{ restaurant.distance }} km away - R{{ restaurant.price }}</p>
+      </ion-label>
+  </ion-item>
+  </ion-list>
+</ion-content>

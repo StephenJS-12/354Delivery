@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Account</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>
+          John Jones<br>
+          031 402 3352 | John Jones
+        </ion-label>
+        <ion-button slot="end" fill="clear" (click)="editDetails()">Edit</ion-button>
+      </ion-item>
+
+      <ion-item lines="full" detail (click)="openManageAddresses()">
+        <ion-icon name="navigate" slot="start"></ion-icon>
+        Manage Addresses
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>
+      Past Orders
+    </ion-list-header>
+    <ion-item *ngFor="let order of pastOrders">
+      {{ order.description }}
+      <ion-button slot="end" (click)="reorder(order)">Reorder</ion-button>
+      <ion-button slot="end" (click)="getHelp(order)">Get Help</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
