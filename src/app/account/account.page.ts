@@ -35,6 +35,7 @@ export class AccountPage implements OnInit {
     const { data } = await modal.onWillDismiss();
     if (data) {
       this.userDetails = data;
+      console.log("Updated user details: ", this.userDetails)
     }
   }
 

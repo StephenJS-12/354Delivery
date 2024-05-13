@@ -12,8 +12,8 @@
     <ion-card-content>
       <ion-item lines="none">
         <ion-label>
-          John Jones<br>
-          031 402 3352 | John Jones
+          {{ userDetails.name }}<br>
+          {{ userDetails.phone }} | {{ userDetails.email }}
         </ion-label>
         <ion-button slot="end" fill="clear" (click)="editDetails()">Edit</ion-button>
       </ion-item>
