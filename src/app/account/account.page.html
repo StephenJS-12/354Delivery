@@ -13,7 +13,8 @@
       <ion-item lines="none">
         <ion-label>
           {{ userDetails.name }}<br>
-          {{ userDetails.phone }} | {{ userDetails.email }}
+          {{ userDetails.phone }}<br>
+           {{ userDetails.email }}
         </ion-label>
         <ion-button slot="end" fill="clear" (click)="editDetails()">Edit</ion-button>
       </ion-item>
@@ -30,7 +31,14 @@
       Past Orders
     </ion-list-header>
     <ion-item *ngFor="let order of pastOrders">
-      {{ order.description }}
+      <ion-thumbnail slot="start" *ngIf="order.items?.length > 0">
+        <ion-img [src]="order.items[0]?.image"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        {{ order.restaurant }}
+        <p *ngFor="let item of order.items">{{ item.name }} x{{ item.quantity }} - {{ item.price | currency:'R':'symbol':'1.0-2' }}</p>
+        <p>Total: {{ order.orderTotal | currency:'R':'symbol':'1.0-2' }}</p>
+      </ion-label>
       <ion-button slot="end" (click)="reorder(order)">Reorder</ion-button>
       <ion-button slot="end" (click)="getHelp(order)">Get Help</ion-button>
     </ion-item>
