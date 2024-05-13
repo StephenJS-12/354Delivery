@@ -16,8 +16,8 @@ export interface Restaurant {
 export class RestaurantService {
   private restaurants: Restaurant[] = [
     {
-      name: 'Jollof of Africa',
-      dish: 'Top Dish: Jollof Rice',
+      name: 'Joll of Africa',
+      dish: 'Top Dish: A5 Wagyu Beef Steak',
       type: 'African',
       rating: 5,
       distance: 2.36,
