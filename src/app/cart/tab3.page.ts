@@ -24,7 +24,7 @@ export class Tab3Page {
   }
   
   totalPay() {
-    return this.itemTotal() + 50; // Assuming delivery fee is R50
+    return this.itemTotal() + 50; 
   }
 
   async makePayment() {
@@ -33,15 +33,20 @@ export class Tab3Page {
       duration: 2000
     });
     toast.present();
+
+    this.cartService.saveOrder();
+
+    this.updateCartDisplay();
   }
 
   removeItem(index: number) {
     this.cartService.removeItem(index);
-    this.cartItems = this.cartService.getCartItems(); // Refresh the list after removal
+    this.cartItems = this.cartService.getCartItems(); 
   }
 
   updateCartDisplay(): void {
-    this.cartItems = this.cartService.getCartItems(); // Refresh the local copy in your component
+    this.cartItems = this.cartService.getCartItems(); 
   }
+  
 }
 

@@ -4,6 +4,7 @@ import { EditUserDetailsModalComponent } from '../edit-user-details-modal/edit-u
 import { CartService } from '../services/cart.service';
 import { CartItem } from '../services/cart.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -11,10 +12,7 @@ import { HelpModalComponent } from '../help-modal/help-modal.component';
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
-  pastOrders = [
-    { description: 'Jollof of Africa - R200', id: 1 },
-    { description: 'Jollof x 2 - March 31, 2023 10:00 AM', id: 2 }
-  ];
+  pastOrders: any[] = [];
   userDetails: any = {
     name: 'John Jones',
     phone: '031 402 3352',
@@ -23,7 +21,8 @@ export class AccountPage implements OnInit {
 
   constructor(  
     private modalCtrl: ModalController,
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private router: Router) { }
 
   async editDetails() {
     const modal = await this.modalCtrl.create({
@@ -39,26 +38,36 @@ export class AccountPage implements OnInit {
     }
   }
 
-  async reorder(order: any) {
+  reorder(order: any) {
+    if (order && Array.isArray(order.items)) {
       order.items.forEach((item: CartItem) => {
         this.cartService.addToCart(item);
       });
-    console.log('Order has been added to cart again');
+      console.log('Order has been added to cart again');
+      this.router.navigate(['/cart']); 
+    } else {
+      console.error('Order items are undefined or not an array');
+    }
   }
 
   async getHelp(order: any) {
     const modal = await this.modalCtrl.create({
-      component: HelpModalComponent, // You need to create this component
+      component: HelpModalComponent, 
       componentProps: { order: order }
     });
     await modal.present();
   }
 
   openManageAddresses() {
-    // This is just for display, no functionality needed
+   
+  }
+
+  loadPastOrders() {
+    this.pastOrders = this.cartService.getPastOrders();
   }
 
   ngOnInit() {
+    this.loadPastOrders();
   }
 
 }
