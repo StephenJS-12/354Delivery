@@ -25,7 +25,7 @@ export class Tab2Page {
   }
 
   onSearchChange() {
-    console.log('Search Query:', this.searchQuery);  // Log the current query
+    console.log('Search Query:', this.searchQuery);  
     this.filteredRestaurants = this.searchQuery.trim() ? this.restaurants.filter(restaurant => {
       const searchLower = this.searchQuery.toLowerCase();
       return restaurant.name.toLowerCase().includes(searchLower) ||
@@ -40,7 +40,7 @@ export class Tab2Page {
   async showNotification(message: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 2000  // Adjust duration as necessary
+      duration: 2000  
     });
     await toast.present();
   }
@@ -49,7 +49,7 @@ export class Tab2Page {
   addToCart(restaurant: Restaurant) {
     console.log("Adding Item: ", restaurant);
     const cartItem = { name: restaurant.name, price: restaurant.price, quantity: 1, image: restaurant.image}; 
-    this.cartService.addToCart(cartItem); // Call to CartService
-    this.showNotification(`${restaurant.name} added to cart`); // Optional: Display a toast notification
+    this.cartService.addToCart(cartItem); 
+    this.showNotification(`${restaurant.name} added to cart`); 
 }
 }

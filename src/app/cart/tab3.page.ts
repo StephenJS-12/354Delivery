@@ -20,7 +20,7 @@ export class Tab3Page {
   }
 
   itemTotal() {
-    return this.cartItems.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0); // Default to 1 if quantity is undefined
+    return this.cartItems.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0); 
   }
   
   totalPay() {

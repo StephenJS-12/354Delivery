@@ -7,11 +7,11 @@ ion-card {
     --padding-start: 0;
     --inner-padding-end: 0;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    cursor: pointer; /* Shows a pointer cursor on hover to indicate it's clickable */
+    cursor: pointer; 
   
     &:hover {
-      transform: scale(1.03); /* Slightly enlarges the item */
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adds shadow to lift the item */
+      transform: scale(1.03); 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
     }
   }
   

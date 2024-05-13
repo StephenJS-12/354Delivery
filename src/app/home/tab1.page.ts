@@ -60,7 +60,7 @@ export class Tab1Page {
   constructor(
     private cartService: CartService, 
     private toastController: ToastController,
-    private alertController: AlertController  // Add this for alerts
+    private alertController: AlertController  
   ) {}
 
   async addToCart(restaurant: Restaurant) {
@@ -90,9 +90,9 @@ export class Tab1Page {
           handler: (data) => {
             if (data.quantity && parseInt(data.quantity) > 0) {
               this.confirmOrder(restaurant, parseInt(data.quantity));
-              return true;  // Return true or another appropriate value after processing
+              return true;  
             } else {
-              return false; // Keep the alert open if the quantity is not valid or missing
+              return false; 
             }
           } 
         }
