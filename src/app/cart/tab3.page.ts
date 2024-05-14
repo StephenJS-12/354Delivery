@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CartService, CartItem } from '../services/cart.service';
 import { ToastController } from '@ionic/angular';
+import { max, min } from 'rxjs';
 
 @Component({
   selector: 'app-tab3',
@@ -27,16 +28,30 @@ export class Tab3Page {
     return this.itemTotal() + 50; 
   }
 
+  randomInt(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   async makePayment() {
-    const toast = await this.toastController.create({
-      message: 'Payment was successful',
-      duration: 2000
-    });
-    toast.present();
-
-    this.cartService.saveOrder();
-
-    this.updateCartDisplay();
+    const rndInt = this.randomInt(1, 10);
+    if (rndInt == 6){
+      const toast = await this.toastController.create({
+        message: 'Payment failed',
+        duration: 2000
+      });
+      toast.present();
+    } else {
+      const toast = await this.toastController.create({
+        message: 'Payment was successful',
+        duration: 2000
+      });
+      toast.present();
+  
+      this.cartService.saveOrder();
+  
+      this.updateCartDisplay();
+    }
+    console.log(rndInt);
   }
 
   removeItem(index: number) {
